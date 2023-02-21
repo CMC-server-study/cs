@@ -183,6 +183,8 @@ BCNF
 
 테이블 간의 결합
 
+한 데이터베이스 내의 여러 테이블의 레코드를 조합하여 하나의 데이터로 만듦
+
 </div>
 </details>
 
@@ -231,6 +233,11 @@ https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Databa
 
 ![image](https://user-images.githubusercontent.com/59307414/219953113-4cd6a691-a95e-417b-a8e1-a48842354007.png)
 
+nosql 종류
+- k-v : redis(elasticache), dynamodb
+- document: mongodb
+- column-family: HBase, cassandra
+- graph: neo4j
 
 </div>
 </details>
@@ -243,6 +250,20 @@ https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Databa
 <summary>답변</summary>
 <div markdown="1">
 
+object-relational mapper
+
+DB를 OOP처럼 다루는 것.
+
+entitymanager한테 쿼리를 맡기고, 앱 내에서 entitymanager를 움직이는 함수를 쓰는 식으로 DB에 접근
+
+orm vs odm
+
+https://medium.com/@julianam.tyler/what-is-the-difference-between-odm-and-orm-267bbb7778b0
+
+object-document mapper
+
+NoSQL에서 document batabase (mongo db)를 지원하기 위해 데이터를 변환하는 프로그래밍 기법
+
 </div>
 </details>
 
@@ -254,6 +275,11 @@ https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Databa
 <summary>답변</summary>
 <div markdown="1">
 
+
+Java Database Connectivity
+
+DB에 접근할 수 있도록 Java에서 제공하는 API
+
 </div>
 </details>
 
@@ -264,6 +290,10 @@ https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Databa
 <summary>답변</summary>
 <div markdown="1">
 
+단일키 : 컬럼 1개를 key로 사용
+
+복합키 : 컬럼 2개 이상을 조합하여 key로 사용
+
 </div>
 </details>
 
@@ -273,6 +303,12 @@ https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Databa
 <details>
 <summary>답변</summary>
 <div markdown="1">
+
+???
+
+- 서브쿼리보다는 join 쓰는 것을 권장
+- join에 거는 컬럼은 인덱스를 활용 (당연히 인덱스 스캔이 효율적이니)
+
 
 </div>
 </details>
@@ -296,6 +332,13 @@ https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Databa
 <summary>답변</summary>
 <div markdown="1">
 
+실행 계획 : SQL문이 어떻게 실행될지에 대한 계획
+
+- `explain`
+
+옵티마이저 : SQL문을 실행하기 전에 비용 기반으로 다양한 최적의 실행계획을 수립하는 도구
+
+
 </div>
 </details>
 
@@ -307,6 +350,17 @@ https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Databa
 <summary>답변</summary>
 <div markdown="1">
 
+database replication 
+
+말 그대로 데이터베이스의 복제본을 운용하는 것
+
+마스터-슬레이브 형태로 운용하면서 슬레이브(레플리카)는 마스터 내용을 복제
+- 마스터가 수신한 쓰기/수정/삭제 요청을 레플리카에 전송
+
+백업으로 활용할 수 있는 장점이 있고, reader-writer를 각각 활용해서 성능 개선 효과 있음
+
+다만 replica lag가 존재
+
 </div>
 </details>
 
@@ -316,6 +370,18 @@ https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Databa
 <details>
 <summary>답변</summary>
 <div markdown="1">
+
+![image](https://user-images.githubusercontent.com/59307414/220341581-09e9f8fc-2c58-4c62-8420-bd8250a556c8.png)
+
+partion이라는 테이블보다 작은 단위로 나누는 작업
+
+테이블을 물리적으로 분할 -> 읽어야 할 레코드 수가 줄어듬 -> 데이터 조회, 조작 관련 성능 개선
+
+partion 단위로 백업 가능 
+
+다만 테이블보다 작은 단위로 나누기 때문에 테이블 간 join이 상대적으로 더 발생할 수 있음
+
+일반적으로 파티셔닝은 수직 / 수평으로 두 가지로 나누는데, 수평적인 파티셔닝이 샤딩
 
 </div>
 </details>
@@ -327,6 +393,10 @@ https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Databa
 <details>
 <summary>답변</summary>
 <div markdown="1">
+
+entity relationship diagram
+
+엔티티간의 연관성을 표현하는 다이어그램
 
 </div>
 </details>
