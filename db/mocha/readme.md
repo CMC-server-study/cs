@@ -213,7 +213,9 @@ update와 delete의 경우에도 그 변경할 레코드를 찾기 위해 인덱
 - Repeatable read
 - serializable
 
-![스크린샷 2023-02-22 오후 9.34.11.png](..%2F..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-02-22%20%EC%98%A4%ED%9B%84%209.34.11.png)
+<img width="759" alt="스크린샷 2023-02-22 오후 9 34 11" src="https://user-images.githubusercontent.com/82302520/220623692-af2ef968-8d2c-43f2-b5cf-e7dbc7ae4f2b.png">
+
+
 
 ### Read Uncommited
 
@@ -262,7 +264,8 @@ dirty read와 non-repeatable read가 발생하는 건 막아주지만, phantom r
 <summary>답변</summary>
 <div markdown="1">
 
-![스크린샷 2023-02-20 오전 10.49.52.png](..%2F..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-02-20%20%EC%98%A4%EC%A0%84%2010.49.52.png)
+<img width="669" alt="스크린샷 2023-02-20 오전 10 49 52" src="https://user-images.githubusercontent.com/82302520/220623770-f26b38cb-e91a-43a3-9863-90854215aa19.png">
+
 
 inner join
 
@@ -378,15 +381,24 @@ cross join
 
 - 테이블의 칼럼이 원자값을 갖도록 테이블을 분해
 
+![스크린샷 2023-02-20 오전 10 06 27](https://user-images.githubusercontent.com/82302520/220623981-0e3f3268-36a7-4771-85d4-8d76dc792ba6.png)
+
+
 제 2 정규화
 
 - 완전 함수 종속을 만족하도록 테이블을 분해한다
 
     - 완전 함수 종속 : 기본키의 부분집합이 결정자가 되서는 안된다
+    
+![스크린샷 2023-02-20 오전 10 07 50](https://user-images.githubusercontent.com/82302520/220624070-bff99a7e-2eb3-449a-b970-904c84b57e95.png)
+![스크린샷 2023-02-20 오전 10 07 56](https://user-images.githubusercontent.com/82302520/220624075-bf481a8e-475b-4092-95ae-00eb986ab264.png)
+
 
 제 3 정규화
 
 - 이행적 종속을 없애도록 테이블을 분해하는 것
+![스크린샷 2023-02-20 오전 10 15 37](https://user-images.githubusercontent.com/82302520/220624115-738aec00-bd0d-43b9-ad5e-a23dc685bbe3.png)
+![스크린샷 2023-02-20 오전 10 15 47](https://user-images.githubusercontent.com/82302520/220624121-d46d8e40-b6f2-426c-86c0-451d57e7e49b.png)
 
 </div>
 </details>
@@ -572,7 +584,8 @@ JDBC는 자바에서 데이터베이스에 접속할 수 있도록 하는 자바
 
 서버와 DB가 커넥션을 맺는 구체적인 방법은 DB 벤더마다 모두 다르기 때문에 이를 표준화된 인터페이스로 만든게 JDBC이다
 
-![스크린샷 2023-02-22 오후 9.21.35.png](..%2F..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-02-22%20%EC%98%A4%ED%9B%84%209.21.35.png)
+<img width="837" alt="스크린샷 2023-02-22 오후 9 21 35" src="https://user-images.githubusercontent.com/82302520/220623882-d6d520d2-f63a-4e9b-8a6d-b9142dae07ac.png">
+
 
 </div>
 </details>
