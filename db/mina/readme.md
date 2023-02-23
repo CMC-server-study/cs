@@ -1,5 +1,9 @@
 # 데이터베이스
-## 인덱스
+
+<details>
+<summary>인덱스</summary>
+<div>
+
 ### 인덱스란?
 데이터베이스 테이블에 대한 검색 성능의 속도를 높여주는 자료구조
 특정 칼럼에 인덱스를 생성하면 해당 칼럼의 데이터들을 정렬한 후 별도의 메모리 공간에 칼럼의 값과 물리적 주소를 함께 저장
@@ -10,28 +14,38 @@
 - 데이터들이 정렬된 형태를 갖게 됨에 따라 'Full Table Scan' 작업 없이 조건에 맞는 데이터를 빠르게 찾을 수 있음
 - ORDER BY, MIN/MAX와 같은 경우도 마찬가지로 빠르게 수행 가능
 
-**Where 절의 효율성**
-Index를 사용하지 않는 경우
+#### Where 절의 효율성
+
+**Index를 사용하지 않는 경우**
 - Where 절을 이용할 때 레코드의 처음부터 끝까지 다 읽어서 검색 조건과 맞는지 비교해야 한다.(Full Table Scan)
-  Index를 사용하는 경우
+
+**Index를 사용하는 경우**
 - 테이블이 정렬되어 있기 때문에 해당 조건에 맞는 데이터를 빠르게 찾을 수 있다.
 
 **Order by 절의 효율성**
+
 Index를 사용하는 경우 Order by에 의한 Sort 과정을 피할 수 있다.
+
 Order by는 정렬과 동시에 메모리에서 정렬이 이루어지고 메모리보다 더 큰 작업이 필요하다면 디스크 I/O도 추가적으로 발생되는 등 부하가 괴장히 많이 걸리는 작업이다.
+
 하지만 인덱스를 사용하면 이미 정렬이 되어있기 때문에 이런 전반적인 자원의 소모가 필요하지 않다.
 
 **MIN, MAX의 효율적인 처리**
+
 시작값과 끝값만 가져오면 되기 때문에 훨씬 효율적이다.
 
 #### 단점
 - 인덱스를 관리하기 위해 DB의 약 10%에 해당하는 저장공간이 필요하다.
+
+
 - 정렬된 상태를 계속 유지시켜줘야 한다.
-    - = 데이터 값이 바뀌는 부분에 악영향을 미친다.
-    - 데이터가 추가되거나 값이 바뀌면 INDEX 테이블 내에 있는 값들을 재정렬해야 한다.
+  - = 데이터 값이 바뀌는 부분에 악영향을 미친다.
+  - 데이터가 추가되거나 값이 바뀌면 INDEX 테이블 내에 있는 값들을 재정렬해야 한다.
+
+
 - 잘못 사용할 경우 오히려 성능이 저하될 수 있다.
-    - 테이블의 전체 데이터 중 10~15% 이하의 데이터를 처리하는 경우에만 효율적이다.
-    - 값의 범위(range)가 적은 칼럼의 경우, 인덱스를 읽은 후 다시 많은 데이터를 조회해야 하기 때문에 비효율적
+  - 테이블의 전체 데이터 중 10~15% 이하의 데이터를 처리하는 경우에만 효율적이다.
+  - 값의 범위(range)가 적은 칼럼의 경우, 인덱스를 읽은 후 다시 많은 데이터를 조회해야 하기 때문에 비효율적
 
 #### 해시 테이블
 > 칼럼 값과 물리적 주소를 (key, value)의 한 쌍으로 저장
@@ -51,18 +65,20 @@ Binary search tree와 유사하지만 한 노드 당 자식 노드가 2개 이�
 
 **B*Tree**
 ![](https://velog.velcdn.com/images/min_amim/post/60e1f71a-4399-4fc6-b09a-ca7a252f7dba/image.png)
-- 대부분의 DBMS, 특히 오라클에서 중점적으로 사용하고 있는 보편적인 인덱스
-  Root(기준) / Branch(중간) / Leaf(말단) Node로 구성되며 계층적 구조를 갖는다.
-  특정 칼럼에 인덱스를 생성하는 순간 칼럼의 값들을 정렬한다.
-  오라클 서버에서 풀 스캔보다 인덱스 스캔이 유리하다고 판단했을 때, 생성된 인덱스가 정렬한 순서가 중간쯤 되는 데이터를 root 블록으로 지정하고 root 블록을 기준으로 가지가 되는 branch 블록을 지정하며 마지막으로 잎에 해당하는 leaf 블록에 인덱스의 키가 되는 데이터와 데이터의 물리적 주소 정보인 rowid를 저장한다.
+- 대부분의 DBMS, 특히 오라클에서 중점적으로 사용하고 있는 보편적인 인덱스 
+- Root(기준) / Branch(중간) / Leaf(말단) Node로 구성되며 계층적 구조를 갖는다. 
+- 특정 칼럼에 인덱스를 생성하는 순간 칼럼의 값들을 정렬한다. 
+- 오라클 서버에서 풀 스캔보다 인덱스 스캔이 유리하다고 판단했을 때, 생성된 인덱스가 정렬한 순서가 중간쯤 되는 데이터를 root 블록으로 지정하고 root 블록을 기준으로 가지가 되는 branch 블록을 지정하며 마지막으로 잎에 해당하는 leaf 블록에 인덱스의 키가 되는 데이터와 데이터의 물리적 주소 정보인 rowid를 저장한다.
 
 
 **B+Tree**
+
 B-Tree의 확장 개념으로, internal 혹은 branch node에 key와 data를 담을 수 있는 B-Tree와 달리 브랜치 노드에 key만 담아두고 data는 담지 않는다.
 오직 리프 노드에만 key와 data를 저장하고, 리프 노드끼리 Linked list로 연결돼 있다.
 MySQL의 DB engine이 B+Tree
 
 **장점**
+
 - 리프 노드를 제외하고 데이터를 담아두지 않기 때문에 메모리를 더 확보함으로써 더 많은 key들을 수용할 수 있다. 하나의 노드에 더 많은 key들을 담을 수 있기 때문에 트리의 높이는 더 낮아진다.(cache hit을 높일 수 있다.)
 - 풀 스캔 시, B+Tree는 리프 노드에 데이터가 모두 있기 때문에 한 번에 선형탐색만 하면 된다. -> B-Tree에 비해 빠르다.
 
@@ -75,6 +91,15 @@ https://choicode.tistory.com/27
 더 자세한 사항 알아보기
 https://ssocoit.tistory.com/217
 https://3catpapa.tistory.com/201
+
+</div>
+</details>
+
+
+<details>
+<summary>정규화</summary>
+<div>
+
 ### 정규화(Normalization)
 이상현상이 있는 릴레이션을 분해하여 이상현상을 없애는 과정
 
@@ -95,27 +120,39 @@ https://3catpapa.tistory.com/201
 
 #### 제2 정규화
 제1 정규화를 진행한 테이블에 대해 완전 함수 종속을 만족하도록 테이블을 분해하는 것
+
 **완전 함수 종속**: 어떤 속성이 기본키에 대해 완전히 종속인 경우로, 기본키의 부분집합이 결정자가 되어서는 안된다.
+
 **부분 함수 종속**: 어떤 속성이 기본키가 아닌 다른 속성에 종속되거나, 기본키가 여러 속성으로 구성되어 있을 경우 기본키를 구성하는 속성 중 일부만 종속될 때
 
 #### 제3 정규화
 제2 정규화를 진행한 테이블에 대해 이행적 종속을 없애도록 테이블을 분해하는 것
+
 **이행적 종속**: A->B, B-C가 성립할 때 A->C가 성립되는 것
 
 #### BCNF 정규화
+
 제3 정규화를 진행한 테이블에 대해 모든 결정자가 후보키가 되도록 테이블을 분해하는 것
 
 #### 제4 정규화
 BCNF를 진행한 테이블에 대해서 함수 종속이 아닌 다치 종속(MVD: Multi Valued Dependency)을 제거
+
 **다치 종속**: 하나의 릴레이션에서 두 개의 속성이 2:N 대응되는 경우
 
 #### 제5 정규화
 제4 정규화를 만족한 테이블에 대해서 후보키를 통하지 않는 조인 종속(JD: Join Dependency)를 제거
 조인 종속이 존재하는 릴레이션이 사용하기 편하므로, 이는 지나치게 이상적인 정규형이다.
+
 **조인 종속**: 테이블을 분해한 결과를 다시 조인했을 때 원래의 테이블과 동일하게 복원되는 제약 조건으로, 다치 종속의 개념을 더 일반화한 것
 
 일반적으로는 제3정규형이나 BCNF에 속하도록 릴레이션을 분해한다.
+</div>
+</details>
 
+
+<details>
+<summary>트랜잭션</summary>
+<div>
 
 ### 트랜잭션
 #### 트랜잭션이란?
@@ -147,27 +184,33 @@ BCNF를 진행한 테이블에 대해서 함수 종속이 아닌 다치 종속(M
 #### 트랜잭션 격리 수준
 **MySQL의 격리 수준**
 - READ UNCOMMIT(커밋되지 않은 읽기) = 레벨 0
-    - SELECT 문장이 수행되는 동안 해당 데이터에 Shared Lock이 걸리지 않는 계층
-    - 트랜잭션에 처리 중이거나, 아직 Commit되지 않은 데이터를 다른 트랜잭션이 읽는 걸 허용함
-    - DB의 일관성을 유지하는 것이 불가능
-    - Dirty Read 발생
+  - SELECT 문장이 수행되는 동안 해당 데이터에 Shared Lock이 걸리지 않는 계층
+  - 트랜잭션에 처리 중이거나, 아직 Commit되지 않은 데이터를 다른 트랜잭션이 읽는 걸 허용함
+  - DB의 일관성을 유지하는 것이 불가능
+  - Dirty Read 발생
+
+
 - READ COMMITTED(커밋된 읽기) = 레벨 1
-    - SELECT 문장이 수행되는 동안 다른 트랜잭션이 접근할 수 없어 대기
-    - Commit이 이루어진 트랜잭션만 조회 가능
-    - 기본적으로 사용하는 Isolation Level
-    - Non-Repeatable Read 발생
+  - SELECT 문장이 수행되는 동안 다른 트랜잭션이 접근할 수 없어 대기
+  - Commit이 이루어진 트랜잭션만 조회 가능
+  - 기본적으로 사용하는 Isolation Level
+  - Non-Repeatable Read 발생
+
+
 - REPEATABLE READ(반복 가능한 읽기) = 레벨 2
-    - 트랜잭션이 완료될 때까지 SELECT 문장이 사용되는 모든 데이터에 Shared Lock이 걸리는 계층
-    - 트랜잭션이 범위 내에서 조회한 데이터 내용이 항상 동일함을 보장
-    - 다른 사용자는 트랜잭션 영역에 해당되는 데이터에 대해 수정 불가능
-    - MySQL DBMS에서 기본으로 사용
-    - Non-Repeatable Read 발생 X
-    - 즉, 자신의 트랜잭션 번호보다 낮은 트랜잭션 번호에서 변경된 것만 보게 된다.
-    - **Phantom Read 발생**
+  - 트랜잭션이 완료될 때까지 SELECT 문장이 사용되는 모든 데이터에 Shared Lock이 걸리는 계층
+  - 트랜잭션이 범위 내에서 조회한 데이터 내용이 항상 동일함을 보장
+  - 다른 사용자는 트랜잭션 영역에 해당되는 데이터에 대해 수정 불가능
+  - MySQL DBMS에서 기본으로 사용
+  - Non-Repeatable Read 발생 X
+  - 즉, 자신의 트랜잭션 번호보다 낮은 트랜잭션 번호에서 변경된 것만 보게 된다.
+  - **Phantom Read 발생**
+
+
 - SERIALIZABLE(직렬화 가능) = 레벨 3
-    - 트랜잭션이 완료될 때까지 SELECT 문장이 사용되는 모든 데이터에 Shared Lock이 걸리는 계층
-    - 가장 엄격한 격리 수준으로 완벽한 읽기 일관성 모드
-    - 다른 사용자는 트랜잭션 영역에 해당되는 데이터에 대해 수정 및 입력 불가능
+  - 트랜잭션이 완료될 때까지 SELECT 문장이 사용되는 모든 데이터에 Shared Lock이 걸리는 계층
+  - 가장 엄격한 격리 수준으로 완벽한 읽기 일관성 모드
+  - 다른 사용자는 트랜잭션 영역에 해당되는 데이터에 대해 수정 및 입력 불가능
 
 **Dirty Read**
 - 어떤 트랜잭션에서 아직 실행이 끝나지 않은 다른 트랜잭션에 의한 변경사항을 보게 되는 경우
@@ -193,7 +236,14 @@ https://coding-factory.tistory.com/226
 https://joont92.github.io/db/트랜잭션-격리-수준-isolation-level/
 https://zzang9ha.tistory.com/381
 https://dar0m.tistory.com/225
----
+
+</div>
+</details>
+
+<details>
+<summary>교착상태</summary>
+<div>
+
 ## 교착상태(Dead Lock)
 > 두 개 이상의 트랜잭션이 특정 자원의 Lock을 획득한 채 다른 트랜잭션이 소유하고 있는 잠금을 요구하면 아무리 기다려도 상황이 바뀌지 않는 상태가 되는데 이를 교착상태라고 한다. 즉, 여러 개의 트랜잭션들이 실행되지 못하고 서로 무한적 기다리고 있는 상태
 
@@ -210,6 +260,14 @@ https://dar0m.tistory.com/225
 ### 해결 방안
 https://jaehoney.tistory.com/162
 
+</div>
+</details>
+
+
+<details>
+<summary>JOIN</summary>
+<div>
+
 ## JOIN
 > 둘 이상의 테이블을 연결해서 데이터를 검색하는 방법
 
@@ -219,6 +277,13 @@ https://jaehoney.tistory.com/162
 - OUTER JOIN: 외부 조인(합집합)
 
 * 인덱스를 활용하면, 조인 연산의 비용을 극적으로 낮출 수 있다.
+
+</div>
+</details>
+
+<details>
+<summary>SQL Injection</summary>
+<div>
 
 ## SQL Injection(SQL 삽입 공격)
 > 보안 상의 취약점을 이용해 임의의 SQL 문을 주입하고 실행되게 함으로써 데이터베이스가 비정상적인 행동을 하도록 조작하는 행위
@@ -240,6 +305,14 @@ https://jaehoney.tistory.com/162
 - Error message 노출 금지
 - 웹 방화벽 사용
 
+</div>
+</details>
+
+
+<details>
+<summary>Statement, PreparedStatement</summary>
+<div>
+
 ## Statement, PrepareStatement
 > 자바에서 DB로 쿼리문을 전송할 때, 2가지 인터페이스를 사용할 수 있다.
 Statement와 PreparedStatement이다.
@@ -257,7 +330,6 @@ Statement와 PreparedStatement이다.
 - Statement는 정적인 쿼리문을 처리할 수 있으므로, 쿼리문에 값이 미리 입력되어 있어야 한다.
 
 **장점**
-- 테이블, 칼럼에 대한 동적 쿼리 작성이 가능하다. 즉, DDL 작성에 적합하다.
 - 쿼리 실행문을 직접 확인 가능하므로 쿼리 분석이 쉽다.
 
 **단점**
@@ -282,8 +354,20 @@ Statement와 PreparedStatement이다.
 - ex) 변수를 활용해 동적으로 테이블을 변경하는 쿼리를 작성해야 하는 경우 Prepared Statement로는 처리가 불가능하다.
 
 ### Statement와 PreparedStatement의 차이점
-- Statement: SQL문을 실행할 때마다 매번 구문을 새로 작성하고 해석해야하므로 오버헤드 존재
-- PreparedStatement: 선처리 방식을 사용하므로 SQL문을 미리 준비해놓고 바인딩 변수(? 연산자)를 사용해서 반복되는 SQL문 쉽게 처리
+- Statement
+  - SQL문을 실행할 때마다 매번 구문을 새로 작성하고 해석해야하므로 오버헤드 존재
+
+- PreparedStatement
+  - 선처리 방식을 사용하므로 SQL문을 미리 준비해놓고 바인딩 변수(? 연산자)를 사용해서 반복되는 SQL문 쉽게 처리
+  - DML(SELECT, INSERT, UPDATE, DELETE) 구문 처리에 적합하다.
+
+</div>
+</details>
+
+
+<details>
+<summary>RDBMS, NoSQL</summary>
+<div>
 
 ## RDBMS, NoSQL
 ### RDBMS
@@ -298,11 +382,13 @@ Statement와 PreparedStatement이다.
 
 **단점**
 - 테이블 간 관계를 맺고 있어 시스템이 커질 경우 JOIN문이 많은 복잡한 쿼리가 만들어질 수 있다.
-- 성능 향상을 위해서는 Scale-up만을 지원하므로 비용이 기하급수적으로 증가할 수 있다.
+- ~~성능 향상을 위해서는 Scale-up만을 지원하므로 비용이 기하급수적으로 증가할 수 있다.~~
+- 샤딩을 통해 Sclae-out을 할 수 있으나 어플리케이션 레벨에서 모든 샤딩을 제어해야 한다.
 - 스키마로 인해 데이터가 유연하지 못함. 나중에 스키마가 변경될 경우 번거롭고 어렵다.
 
-*Scale-up(=수직 스케일링(vertical scaling)): 기존 서버를 보다 높은 사양으로 업그레이드
-Scale-out(=수평 스케일링(horizontal scaling)): 장비를 추가해서 확장
+_Scale-up(=수직 스케일링(vertical scaling)): 기존 서버를 보다 높은 사양으로 업그레이드_
+
+_Scale-out(=수평 스케일링(horizontal scaling)): 장비를 추가해서 확장_
 
 ### NoSQL(Not Only SQL)
 > RDB 형태의 관계형 데이터베이스가 아닌 다른 형태의 데이터 저장 기술
@@ -341,15 +427,15 @@ Object <- 매핑 -> DB 데이터 에서 매핑의 역할을 해준다.
 
 **장점**
 - 객체지향적 코드로 더 직관적이고 비즈니스 로직에 집중할 수 있도록 도와준다.
-    - CRUD를 위한 긴 SQL 문장 작성할 필요 X
-    - SQL의 절차적 접근이 아닌 객체적인 접근으로 생산성 증가
+  - CRUD를 위한 긴 SQL 문장 작성할 필요 X
+  - SQL의 절차적 접근이 아닌 객체적인 접근으로 생산성 증가
 - 재사용 및 유지보수의 편리성 증가
-    - 매핑 정보가 명확해 ERD를 보는 것에 대한 의존도 낮출 수 있음
-    - ORM은 독립적으로 작성돼있고 해당 객체들은 재사용 가능
+  - 매핑 정보가 명확해 ERD를 보는 것에 대한 의존도 낮출 수 있음
+  - ORM은 독립적으로 작성돼있고 해당 객체들은 재사용 가능
 - DBMS에 대한 종속성 감소
-    - 대부분의 ORM은 DB에 종속적이지 않다.
-    - Object에 집중함으로써 DBMS를 교체하는 극단적 작업에도 비교적 적은 리스크와 시간 소요
-    - 구현 방법 뿐 아니라 많은 솔루션에서 자료형 타입에서까지 종속적이지 않다.
+  - 대부분의 ORM은 DB에 종속적이지 않다.
+  - Object에 집중함으로써 DBMS를 교체하는 극단적 작업에도 비교적 적은 리스크와 시간 소요
+  - 구현 방법 뿐 아니라 많은 솔루션에서 자료형 타입에서까지 종속적이지 않다.
 
 **단점**
 - 완벽한 ORM만으로는 구현하기 어렵다.
@@ -367,13 +453,34 @@ https://iksflow.tistory.com/127
 https://pythontoomuchinformation.tistory.com/528
 https://woooseogi.tistory.com/97
 https://velog.io/@alskt0419/ORM에-대해서...-iek4f0o3fg
----
+
+</div>
+</details>
+
+<details>
+<summary>JDBC</summary>
+<div>
+
 ## JDBC
 자바에서 데이터베이스에 접속할 수 있도록 하는 자바 API
 이를 통해 DBMS의 종류에 관계 없이 데이터베이스를 연결하고 작업을 처리할 수 있다.
 
+</div>
+</details>
+
+<details>
+<summary>JDBC</summary>
+<div>
+
 ## 단일키, 복합키, index
 https://prohannah.tistory.com/175
+
+</div>
+</details>
+
+<details>
+<summary>Join 연산 속도</summary>
+<div>
 
 ## join 연산 속도
 **조인 연산 알고리즘**
@@ -386,7 +493,9 @@ https://prohannah.tistory.com/175
 구동 테이블(Driving Table)이 작을수록, 내부 테이블(Inner Table)의 결합키 필드에 인덱스가 존재하는 경우 가장 성능을 높일 수 있다.
 
 **구동테이블**: 조인이 진행될 때 먼저 액세스되어 Access Path를 주도하는 테이블. 즉, 주도적으로 다른 테이블의 결합키에 다가가서 매칭을 시도하는 테이블
+
 **내부테이블**: 구동테이블의 대상이 되는 테이블
+
 **인덱스**: 검색 시 레코드를 Full Scan하지 않고 색인화되어 있는 INDEX 파일을 검색해 검색 속도를 빠르게 해준다.
 
 조인은 실행계획에 변동이 일어나기 가장 쉬운 연산이다. 조인을 대체할 수 있는 다른 수단을 잘 활용하는 것이 좋다.
@@ -394,7 +503,20 @@ ex) [윈도우 함수](https://schatz37.tistory.com/12)
 
 더 자세한 정보) https://schatz37.tistory.com/2
 
-## select 조회 시 칼럼이 많은 데이터가 효율적일까, 로우가 많은 데이터가 효율적일까?
+</div>
+</details>
+
+
+<details>
+<summary>select 조회 시 칼럼이 많은 데이터가 효율적일까, 로우가 많은 데이터가 효율적일까?</summary>
+<div>
+</div>
+</details>
+
+
+<details>
+<summary>실행계획, 옵티마이저</summary>
+<div>
 
 ## 실행계획, 옵티마이저
 옵티마이저는 사용자가 질의한 SQL문에 대해 최적의 실행 방법을 결정하는 역할 수행한다. 이러한 최적의 실행 방법을 실행계획(Execution Plan)이라고 한다.
@@ -409,6 +531,13 @@ ex) [윈도우 함수](https://schatz37.tistory.com/12)
 - 액세스 기법
 - 최적화 정보
 - 연산
+
+</div>
+</details>
+
+<details>
+<summary>복제</summary>
+<div>
 
 ## 복제(Replication)
 > 두 개 이상의 DBMS를 이용해 Master/Slave의 수직적 구조를 활용해 DB의 부하를 분산시키는 기술
@@ -426,11 +555,18 @@ ex) [윈도우 함수](https://schatz37.tistory.com/12)
 **단점**
 - 데이터 정합성을 보장할 수 없음
 - Binary Log File 관리
-    - Master는 Binary Log가 무분별하게 쌓이는 걸 막기 위해 데이터 보관 주기를 설정하지만 Master는 Slave까지 관리하지는 않기 때문에 Master에서 Binary Log File을 삭제했다고 해서 Slave에서 Binary Log가 삭제되지는 않음
+  - Master는 Binary Log가 무분별하게 쌓이는 걸 막기 위해 데이터 보관 주기를 설정하지만 Master는 Slave까지 관리하지는 않기 때문에 Master에서 Binary Log File을 삭제했다고 해서 Slave에서 Binary Log가 삭제되지는 않음
 - Fail Over 불가
-    - Master에서 에러가 발생한 경우 Slave로 Fail Over하는 기능을 지원하지 않는다. Slave 역시 Master와 Log 위치가 다르면 관리자가 작업해야 한다.
+  - Master에서 에러가 발생한 경우 Slave로 Fail Over하는 기능을 지원하지 않는다. Slave 역시 Master와 Log 위치가 다르면 관리자가 작업해야 한다.
 
 더 자세한 내용) https://velog.io/@zpswl45/DB-Replication-개념-정리
+
+</div>
+</details>
+
+<details>
+<summary>파티셔닝, 샤딩</summary>
+<div>
 
 ## 파티셔닝/샤딩
 ### 파티셔닝(Partitioning)
@@ -442,14 +578,14 @@ VLDB(Very large DBMS)와 같이 하나의 DBMS에 너무 큰 테이블이 들어
 
 **장점**
 - 성능(Performance)
-    - 특정 쿼리의 성능을 향상
-    - 대용량 Data Write 환경에서 효율적
-    - 필요한 데이터만 빠르게 조회 가능
-    - Full Scan에서 데이터 접근의 범위를 줄임으로써 성능 향상
+  - 특정 쿼리의 성능을 향상
+  - 대용량 Data Write 환경에서 효율적
+  - 필요한 데이터만 빠르게 조회 가능
+  - Full Scan에서 데이터 접근의 범위를 줄임으로써 성능 향상
 - 가용성(Availability)
-    - 물리적인 파티셔닝으로 전체 데이터의 훼손 가능성이 줄고 데이터 가용성 향상
-    - 파티션 별로 독립적인 백업과 복구 가능
-    - 파티션 단위로 Disk I/O를 분산해 경합을 줄이므로 Update 성능 향상
+  - 물리적인 파티셔닝으로 전체 데이터의 훼손 가능성이 줄고 데이터 가용성 향상
+  - 파티션 별로 독립적인 백업과 복구 가능
+  - 파티션 단위로 Disk I/O를 분산해 경합을 줄이므로 Update 성능 향상
 - 관리용이성(Manageability)
 
 **단점**
@@ -481,6 +617,14 @@ VLDB(Very large DBMS)와 같이 하나의 DBMS에 너무 큰 테이블이 들어
 - 데이터베이스 서버 간의 연결 과정이 많아져 비용이 증가할 수 있다.
 - 하나의 서버가 고장나면 데이터의 무결성이 깨질 수 있다.
 
+</div>
+</details>
+
+
+<details>
+<summary>ERD</summary>
+<div>
+
 ## ERD(Entity Relationship Diagram)
 > 개체-관계 모델로, 테이블 간의 관계를 설명해주는 다이어그램이다.
 즉, API를 효율적으로 뽑아내기 위한 모델 구조도
@@ -490,3 +634,8 @@ https://velog.io/@fud904/DB-옵티마이저와-실행계획
 https://velog.io/@zpswl45/DB-Replication-개념-정리
 https://code-lab1.tistory.com/202
 https://velog.io/@kjhxxxx/DataBase-ERD란
+
+</div>
+</details>
+
+
