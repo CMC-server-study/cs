@@ -429,7 +429,10 @@ Acceptor는 Poller라는 특별한 쓰레드로 위의 소켓(채널이라고도
 
 이때 들고 있는 소켓에 데이터가 들어왔다는 이벤트가 발생하면 그때 쓰레드 풀의 워커 쓰레드로 요청을 할당해준다. 해당 쓰레드는 디스패처 서블릿으로 요청을 넘기고, 응답을 반환받은 뒤 쓰레드 풀로 돌아간다.
 
-
+**참고하면 좋은 글**
+- https://engineering.linecorp.com/ko/blog/do-not-block-the-event-loop-part1 (3편까지 다 읽어보세요!)
+- https://velog.io/@jihoson94/BIO-NIO-Connector-in-Tomcat (톰캣의 내부 구조)
+- 
 ## 톰캣 기본 사이즈, 최대 사이즈
 
 - Max Thread Size : 200
