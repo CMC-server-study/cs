@@ -423,7 +423,7 @@ JDBC 관련해서는 타임아웃에 대한 이해가 중요하다고 생각함,
 
 클라이언트로부터 소켓 연결 신청이 들어오면 accept 하고, 데이터를 주고받을 수 있는 소켓을 반환한다.
 
-![image](https://user-images.githubusercontent.com/82302520/223705330-04030d1f-1603-49bf-bce4-3a7a29e67ce1.png)
+<img width="790" alt="poller" src="https://user-images.githubusercontent.com/82302520/223705828-1a665f03-0b65-45b5-a1ac-63ca83ec28f0.png">
 
 Acceptor는 Poller라는 특별한 쓰레드로 위의 소켓(채널이라고도 한다)을 전달한다. Poller라는 쓰레드는 java NIO의 멀티플렉싱 기술을 사용해서 하나의 쓰레드로 여러 채널을 보유하고 있을 수 있다.
 
