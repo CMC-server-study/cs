@@ -23,11 +23,11 @@
 - SpringBoot의 경우, 자동 구성(AutoConfiguration)을 사용해서 조건에 따라 미리 스프링 빈 등록 코드를 라이브러리가 제공해줄 수 있다. 또한 스프링부트 자체적으로도 프로젝트에 자주 사용되는 구성들을 AutoConfigure starter를 통해 제공해준다.
 
 
-![스크린샷 2023-03-07 오전 12.50.53.png](/image/springboot_1.png)
+<img width="470" alt="springboot_1" src="https://user-images.githubusercontent.com/82302520/223704975-284a1321-e2e0-4cf9-8990-90202364834a.png">
 
 위 사진에 있는 autoConfigure 패키지에 AutoConfiguration 관련 코드가 모두 들어있다.
 
-![스크린샷 2023-03-07 오전 12.50.53.png](/image/springboot_2.png)
+<img width="841" alt="springboot_2" src="https://user-images.githubusercontent.com/82302520/223705006-048e68a6-f705-48cd-ac4d-2b02705edff8.png">
 
 다음 사진에 메타 에노테이션으로 붙어있는 @EnableAutoConfiguration이 자동 구성(AutoConfiguration)을 가능하게 해준다.
 
@@ -210,7 +210,7 @@ repository는 엔티티 객체를 보관하고 관리하는 저장소, dao는 �
 
 Data Transfer Object의 약자로 계층 간 데이터 교환 역할을 한다.
 
-![스크린샷 2023-03-07 오전 12.50.53.png](/image/dto.png)
+<img width="786" alt="dto" src="https://user-images.githubusercontent.com/82302520/223705079-376ef499-a184-4136-a309-43dea74acfc2.png">
 
 ### DTO를 사용하는 이유
 
@@ -282,7 +282,7 @@ Flux
 - https://mangkyu.tistory.com/173 (필터와 인터셉터 차이)
 - https://mangkyu.tistory.com/221 (필터를 스프링 빈으로 등록 및 주입 가능한 이유)
 
-![스크린샷 2023-03-01 오후 2.37.57.png](/image/filter_1.png)
+<img width="911" alt="filter_1" src="https://user-images.githubusercontent.com/82302520/223705127-9e2deb00-33b7-44a8-b119-b4299d3641ed.png">
 
 ### Filter
 
@@ -337,7 +337,7 @@ afterCompletion
 
 ### 필터와 인터셉터 차이
 
-![스크린샷 2023-03-01 오후 2.37.57.png](/image/filter.png)
+<img width="788" alt="filter" src="https://user-images.githubusercontent.com/82302520/223705163-54dac78c-0f6e-428a-8678-22b3498c153b.png">
 
 필터의 사용처
 - 공통된 보안 인증/인가 작업
@@ -365,7 +365,7 @@ afterCompletion
 
 톰캣은 다중 요청을 처리하기 위해 미리 쓰레드 풀을 생성한다. 쓰레드 풀을 생성하지 않고 개별 요청마다 쓰레드를 생성하면 CPU나 JVM 같은 리소스에 큰 부하가 간다. 특히 동시에 수많은 요청이 몰리면 서비스가 다운될수도 있다.
 
-![스크린샷 2023-03-01 오후 2.37.57.png](/image/thread%20pool.png)
+<img width="696" alt="thread pool" src="https://user-images.githubusercontent.com/82302520/223705196-8a2b61e1-586c-4801-ab9e-b0325aeeb6c7.png">
 ### 톰캣의 요청 처리 과정
 
 1. CPU Core size 만큼 쓰레드 풀을 만든다
@@ -391,12 +391,12 @@ afterCompletion
 
 ### JDBC (Java DataBase Connectivity)
 
-![스크린샷 2023-03-01 오후 2.37.57.png](/image/jdbc_1.png)
+<img width="855" alt="jdbc_1" src="https://user-images.githubusercontent.com/82302520/223705234-ebd547f6-79d1-4c74-816a-da3a1384d08e.png">
 
 JDBC는 서로 다른 쿼리 방법과 커넥션 방법을 제공하는 데이터베이스들에 애플리케이션이 일관성 있게 접근할 수 있도록 도와주는 추상화된 API이다. JDBC 스펙에 맞춰서 각각의 DB 벤더들은 JDBC 드라이버를 지원한다.
 
 ### Datasource
-![스크린샷 2023-03-01 오후 2.37.57.png](/image/jdbc_2.png)
+<img width="817" alt="jdbc_2" src="https://user-images.githubusercontent.com/82302520/223705258-deef8727-866b-4fa7-9fab-8ee2d4dc0f33.png">
 
 애플리케이션이 DB로부터 커넥션을 얻어올 수 있는 방법은 여러가지가 있다.
 - 데이터베이스로부터 커넥션을 하나씩 얻어오기
@@ -417,13 +417,13 @@ JDBC 관련해서는 타임아웃에 대한 이해가 중요하다고 생각함,
 
 > 톰캣에서 가장 중요한 내부 구성 요소 중 하나인 Connector에 대해서 알아보고자 한다.
 
-![스크린샷 2023-03-01 오후 2.37.57.png](/image/NIO_Connector.png)
+<img width="795" alt="NIO_Connector" src="https://user-images.githubusercontent.com/82302520/223705306-00a5bf5e-e739-43aa-9281-8a4ce4a3eb59.png">
 
 **Acceptor**
 
 클라이언트로부터 소켓 연결 신청이 들어오면 accept 하고, 데이터를 주고받을 수 있는 소켓을 반환한다.
 
-![스크린샷 2023-03-01 오후 2.37.57.png](/image/poller.png)
+![image](https://user-images.githubusercontent.com/82302520/223705330-04030d1f-1603-49bf-bce4-3a7a29e67ce1.png)
 
 Acceptor는 Poller라는 특별한 쓰레드로 위의 소켓(채널이라고도 한다)을 전달한다. Poller라는 쓰레드는 java NIO의 멀티플렉싱 기술을 사용해서 하나의 쓰레드로 여러 채널을 보유하고 있을 수 있다.
 
