@@ -19,7 +19,7 @@ GC는 두가지 가설을 기반으로 동작한다 (Weak generaitonal hypothesi
 
 Hotspot JVM은 heap 공간을 young 영역과 old 영역으로 나눔
 
-![스크린샷 2023-03-15 오후 8.56.26.png](/image/gc_1.png)
+<img width="370" alt="스크린샷 2023-02-12 오후 3 12 43" src="https://user-images.githubusercontent.com/82302520/225583470-80ad5eb0-5452-4cf6-b75c-1845da0b6eeb.png">
 
 **Young 영역**
 
@@ -31,13 +31,15 @@ young 영역에서 객체를 정리하는걸 minor GC라고 한다.
 
 young 영역에서 살아남은 객체들이 이 영역으로 이동한다. young 영역보다 크게 할당되고 GC도 적게 발생한다. 여기서 GC가 발생하면 Major GC 혹은 Full GC라고 한다.
 
-![스크린샷 2023-03-13 오전 1.30.07.png](..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-03-13%20%EC%98%A4%EC%A0%84%201.30.07.png)
+![스크린샷 2023-03-13 오전 1 31 23](https://user-images.githubusercontent.com/82302520/225583597-f4cb1bc6-2a4b-41a2-b088-f9d675f06c8d.png)
+
 
 Old 영역에 있는 객체가 young 영역에 있는 객체를 참조하는 경우
 - Old 영역에는 512바이트 짜리 카드 테이블이 존재 -> Old 영역에 있는 객체가 Young 영역의 객체를 참조할때마다 참조 정보가 카드테이블에 기록된다. Young 영역 GC 할때는 카드테이블 뒤져서 GC 대상 식별함
 - 카드 테이블 관리는 write barrier 사용한다. Minor GC를 빠르게 해준다.
 
-![스크린샷 2023-03-15 오후 8.56.39.png](..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-03-15%20%EC%98%A4%ED%9B%84%208.56.39.png)
+<img width="386" alt="스크린샷 2023-03-15 오후 8 56 39" src="https://user-images.githubusercontent.com/82302520/225583636-5f6c4049-5337-4f23-ab49-ba9adc709d14.png">
+
 Young 영역은 eden 영역과 두개의 survivor 영역으로 구분된다
 
 1. 새로 생성한 객체들 eden 영역 배치
@@ -61,7 +63,8 @@ Serial GC : GC 쓰레드가 하나임
 parallel GC : GC 처리 쓰레드가 여러개임
 
 ### CMS GC 
-![스크린샷 2023-03-15 오후 9.07.34.png](..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-03-15%20%EC%98%A4%ED%9B%84%209.07.34.png)
+
+![스크린샷 2023-03-13 오전 1 47 56](https://user-images.githubusercontent.com/82302520/225583669-ab866ade-77ba-4ca0-b248-0cecbec6bd6d.png)
 
 initial mark: 
 - 클리스 로더에서 가장 가까운 객체 중 살아있는것만 다 체크
@@ -422,7 +425,8 @@ ThreadPool에서 꺼내서 사용 후 반납 전에 clear 해주지 않으면, �
 해결방법 : ExecuterService를 사용해서 hook을 통해 threadpool 반납 전 꼭 clear를 실행하게 해줄 수 있다.
 
 ### 쓰레드 풀
-![스크린샷 2023-03-15 오후 9.29.39.png](..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-03-15%20%EC%98%A4%ED%9B%84%209.29.39.png)
+
+<img width="715" alt="스크린샷 2023-03-15 오후 9 29 39" src="https://user-images.githubusercontent.com/82302520/225583862-ca2a7675-1201-416d-8c77-c001e9eed5fd.png">
 
 
 ```java
@@ -479,7 +483,7 @@ public class Test{
 
 멀티 쓰레드 환경에서는 여러 CPU Core가 사용된다. 이때 CPU Core들은 각각 캐시를 가지고 있다. 
 
-![스크린샷 2023-03-15 오후 9.36.01.png](..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-03-15%20%EC%98%A4%ED%9B%84%209.36.01.png)
+<img width="470" alt="스크린샷 2023-03-15 오후 9 36 01" src="https://user-images.githubusercontent.com/82302520/225583913-3aea461b-55fa-4ceb-a4eb-be7a390c9756.png">
 
 쓰레드들은 값을 조회할때 바로 RAM에서 가져오는 것이 아니라 자신의 L1 Cache에 저장된 값을 사용한다. 따라서 자신이 조회한 값이 최신의 값이 아닐 가능성이 있다.
 
@@ -506,8 +510,9 @@ public class Test{
 자바에서 모든 컬렉션 클래스와 인터페이스를 포함 하는 "Collection Framework"라는 개념이 JDK 1.2에서 정의가 되었다
 
 Collection 인터페이스(java.util.Collection) 와 Map 인터페이스(java.util.Map) 자바 컬렉션 클래스의 주요 "루트"인터페이스이다
+<img width="647" alt="collection" src="https://user-images.githubusercontent.com/82302520/225584056-bff09f99-526f-40e0-b00a-09571ba674cb.png">
 
-![collection.png](..%2F..%2F..%2FDesktop%2Fcollection.png)
+
 
 ### 컬렉션 사용 이유
 
@@ -531,8 +536,8 @@ Collection 인터페이스(java.util.Collection) 와 Map 인터페이스(java.ut
 - 소프트웨어 개발툴이 빌드나 배치시 코드를 자동으로 생성할 수 있도록 정보 제공
 - 실행시(런타임시)특정 기능을 실행하도록 정보를 제공
 - 불필요한 코드의 중복을 줄여준다
+<img width="655" alt="annotation" src="https://user-images.githubusercontent.com/82302520/225584172-6cc3695d-325c-4793-8346-3aa0a1d18394.png">
 
-![annotation.png](..%2Fimage%2Fannotation.png)
 
 **@Retention**
 
@@ -628,6 +633,8 @@ public void test(){
 - 객체의 메모리 할당의 경우 stack 영역에는 실제 주소값만 저장
 - 배열의 경우 각 인덱스마다 참조값이 할당되고 이를 통해 접근 즉, 배열 내부에 실제값이 있는게 아니라, 그 실제 값의 참조 주소들이 들어있다
 
+![스크린샷 2023-03-15 오후 10 38 34](https://user-images.githubusercontent.com/82302520/225584539-26472942-ed59-4dac-89b8-3cef26bf48f0.png)
+
 pass by value
 - 복사된 데이터를 전달함, 값을 수정하여도 원본 데이터에 영향 주지 않는다
 
@@ -644,6 +651,8 @@ call by reference의 경우, 만약 메인 함수의 변수 7을 함수 매개�
 
 자바의 경우 객체의 경우, 변수에는 주소값이 들어간다. 하지만 매개변수로 옮겨질때는 그 주소값 변수 자체가 복사가 된다. 그렇다면 그 변수를 통해서 같은 객체에 접근 가능하고, 그 객체 내부의 값을 변경할 수는 있지만, 객체 자체를 다른 객체로 바뀌끼울수는 없다. 
 바꿔봤자 복사본이기 때문!
+
+![스크린샷 2023-03-15 오후 10 18 46](https://user-images.githubusercontent.com/82302520/225584605-068f9bf6-89d6-44ec-8954-cf92547fc1b9.png)
 
 ## String, StringBuffer, StringBuilder
 
@@ -678,7 +687,8 @@ api 사용해서 동일 객체 내의 문자열 변경 가능함
 - StringBuilder : 문자열 연산 많고 단일 쓰레드일때
 
 ## checked exception, unchecked  exception (ok)
-![스크린샷 2023-03-15 오후 8.41.06.png](..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-03-15%20%EC%98%A4%ED%9B%84%208.41.06.png)
+<img width="805" alt="스크린샷 2023-03-15 오후 8 41 06" src="https://user-images.githubusercontent.com/82302520/225584314-c32c9f98-214d-43fb-ad86-8525e684b496.png">
+
 
 **예외를 처리하는 방법**
 - try-catch를 통해서 처리 후 정상 로직으로 변환
@@ -814,9 +824,12 @@ public static void main(String[] args) throws NoSuchMethodException, Instantiati
 }
 ```
 
+<img width="635" alt="스크린샷 2023-03-15 오후 8 34 54" src="https://user-images.githubusercontent.com/82302520/225584401-db08c539-882e-452e-b2bd-359b2d18706a.png">
+
+
 Enum의 경우에도 리플렉션을 통해 생성자를 호출하도록 시도해볼 수 있다. 하지만 Enum은 자체적으로 리플렉션을 통한 생성자 호출이 불가능하도록 설계되어있다.
 
-![스크린샷 2023-03-15 오후 8.34.54.png](..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-03-15%20%EC%98%A4%ED%9B%84%208.34.54.png)
+
 ## 스트림
 
 ### Stream API의 특징
