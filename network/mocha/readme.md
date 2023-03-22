@@ -1,6 +1,9 @@
-## OSI 7계층
 
-OSI(Open Systems Interconnection) 모델은 통신 시스템의 설계와 문제 해결을 위한 개념적 모델입니다. 이 모델은 통신 시스템을 7개의 계층으로 나누어 각 계층별로 역할과 기능을 정의하고 있습니다.
+<details>
+<summary>OSI 7계층</summary>
+<div markdown="1">
+
+OSI(Open Systems Interconnection) 모델은 통신 시스템의 설계와 문제 해결을 위한 개념적 모델이다. 이 모델은 통신 시스템을 7개의 계층으로 나누어 각 계층별로 역할과 기능을 정의하고 있다.
 
 1. 물리 계층 (Physical Layer)
     - 전기적, 물리적인 특성을 이용하여 데이터를 전송함
@@ -26,9 +29,13 @@ OSI(Open Systems Interconnection) 모델은 통신 시스템의 설계와 문제
 
 각 계층은 서로 독립적이고 상호 작용한다. 하위 계층은 상위 계층에 대한 서비스를 제공하고, 상위 계층은 하위 계층에서 제공된 서비스를 이용하여 자신의 서비스를 제공한다. 이러한 계층 구조는 시스템의 모듈화, 개방성, 유지보수성 등을 향상시키는 장점이 있다.
 
-<br>
+</div>
+</details>
 
-## TCP / IP
+<details>
+<summary>TCP/IP</summary>
+<div markdown="1">
+
 
 TCP와 IP는 인터넷 프로토콜 스택의 핵심 프로토콜로서, 데이터의 전송을 담당한다.
 
@@ -55,9 +62,12 @@ TCP와는 다르게 자체적으로 오류 검사가 복구 기능을 가지고 
 **IP의 역할**
 - 데이터의 경로 설정과 전송을 담당
 
-<br>
+</div>
+</details>
 
-## TCP / UDP
+<details>
+<summary>TCP/UDP</summary>
+<div markdown="1">
 
 
 |.| TCP       | 	UDP     |
@@ -71,9 +81,12 @@ TCP와는 다르게 자체적으로 오류 검사가 복구 기능을 가지고 
 - TCP는 패킷 손실과 오류 감지,복구 등의 기능이 포함되어 있다. 따라서 신뢰성 있는 데이터 전송이 필요한 금융권 서비스에 TCP가 적합하다.
 - UDP는 오류 감지나 손실 감지 메커니즘은 없지만, 핸드쉐이크 과정을 제외했기에 전송 속도가 매우 빠르다. 일정량의 손실을 허용하는 비디오 스트리밍 서비스 등에 적합하다.
 
-<br>
+</div>
+</details>
 
-## TCP의 3 way handshake와 4 way handshake
+<details>
+<summary>TCP의 3 way handshake와 4 way handshake</summary>
+<div markdown="1">
 
 TCP의 연결 지향적 특징으로 인해 연결 생성과 연결 종료 시에 매번 핸드쉐이킹 과정을 거친다.
 
@@ -105,9 +118,15 @@ TCP의 연결 지향적 특징으로 인해 연결 생성과 연결 종료 시�
 
 > 4-way handshake에서는 수신측의 남은 데이터를 모두 전송할 수 있도록 half-open 기법이 사용된다는게 중요함. 요청자는 이때 수신 스트림만 열고 수신자의 남은 데이터 처리해준다.
 
-<br>
+</div>
+</details>
 
-## TCP의 흐름제어, 혼잡제어
+
+
+<details>
+<summary>TCP의 흐름제어, 혼잡제어</summary>
+<div markdown="1">
+
 
 ### TCP의 흐름 제어
 
@@ -216,9 +235,13 @@ AIMD의 문제점 : 현대의 네트워크는 대역폭이 넉넉하다. 하지�
 - 3 ACK Duplicated는 AIMD로 줄이고 ssthreshold도 거기에 맞게 줄인다.
 - Timeout은 1로 줄이되 ssthreshold를 반으로 줄이지 않는다.
 
-<br>
+</div>
+</details>
 
-## 데이터 캡슐화
+<details>
+<summary>데이터 캡슐화</summary>
+<div markdown="1">
+
 
 데이터를 상위나 하위 계층으로 보내는 과정에서 헤더 정보를 덧붙이는 과정을 캡슐화라고 한다. 데이터 송신측에서 데이터를 캡슐화해서 보내면 수신측에서는 다시 역캡슐화 해서 원하는 데이터를 얻는다.
 
@@ -241,9 +264,15 @@ MSS (Maximum Segment Size)
 - 한번의 통신으로 보낼 수 있는 순수한 데이터의 크기이다.
 - MTU - IP 헤더 (20 bytes) - TCP 헤더 (20 bytes) = 1460 bytes
 
-<br>
+</div>
+</details>
 
-## HTTP1 vs HTTP1.1 vs HTTP2 vs HTTP3
+
+<details>
+<summary>HTTP1 vs HTTP1.1 vs HTTP2 vs HTTP3</summary>
+<div markdown="1">
+
+
 
 ### HTTP1
 - 커넥션 하나 당 하나의 요청만 보낼 수 있었다
@@ -265,9 +294,15 @@ MSS (Maximum Segment Size)
 - HTTP3는 Connection Id를 사용해서 클라이언트와 커넥션을 맺는다. IP 기반으로 연결을 맺을 경우, 자주 네트워크가 변경되는 모바일 환경에서는 커넥션이 끊길
 확률이 높다. 이는 3-way handshake가 발생할 가능성이 높아진다는 말이고 레이턴시의 증가로 이어진다. HTTP3의 경우 IP와 무관한 랜덤한 값인 Connection Id를 사용하기 때문에 네트워크 변경에 영향을 받지 않고 클라이언트와 연결을 유지할 수 있다.
 
-<br>
+</div>
+</details>
 
-## HTTP의 GET과 POST
+<details>
+<summary>HTTP의 GET과 POST</summary>
+<div markdown="1">
+
+
+## 
 
 | 제목 셀1      | GET    | POST        |
 |------------|--------|-------------|
@@ -279,9 +314,12 @@ MSS (Maximum Segment Size)
 | 리소스 전달 방식  | 쿼리 스트링 | HTTP BODY   |
 | 멱등성        | O | X   |
 
-<br>
+</div>
+</details>
 
-## HTTP 요청 응답 헤더
+<details>
+<summary>HTTP 요청 응답 헤더</summary>
+<div markdown="1">
 
 ### HTTP 응답 헤더 주요 항목
 
@@ -314,9 +352,14 @@ MSS (Maximum Segment Size)
 
 - 응답 코드 405 (Method Not Allowed) 상태에서 서버가 제공할 수 있는 HTTP 메서드를 지정
 
-<br>
+</div>
+</details>
 
-## HTTP와 HTTPS 동작 과정
+<details>
+<summary>HTTP와 HTTPS 동작 과정</summary>
+<div markdown="1">
+
+
 
 SSL 계층은 인터넷에서 데이터를 안전하게 전송하기 위한 프로토콜이다. SSL은 TCP/IP 스택 위에 구현되며 전송 계층과 응용 계층 사이에 위치한다.
 
@@ -354,9 +397,12 @@ TCP 3-way Handshake 과정이 끝난 후, SSL Handshake 과정이 발생한다.
 4. ClientKeyExchange : SSL 인증서를 CA의 공개키로 복호화 하고 서버의 공개키를 얻어냄. 이걸로 비밀키를 암호화 후 서버에게 전송.
 5. Finished : 서버는 자신의 공개키로 암호화된 비밀키를 자신의 개인키로 복호화하고, 이제 서버와 클라이언트는 암호화에 사용될 대칭키를 둘 다 가지게 됨.
 
-<br>
+</div>
+</details>
 
-## CORS
+<details>
+<summary>CORS</summary>
+<div markdown="1">
 
 CORS(Cross-Origin Resource Sharing)란, 웹 브라우저에서 실행되는 JavaScript 코드에서 발생하는 보안 상의 이슈 중 하나다.
 보안 상의 이유로, 브라우저는 다른 도메인(출저)에 속한 자원(예: 다른 서버에 있는 이미지, 동영상, 스크립트 파일 등)을 자동으로 요청할 수 없다.
@@ -379,9 +425,12 @@ CORS는 다른 도메인 간의 자원 공유를 보다 쉽고 안전하게 할 
 하지만, 이를 잘못 구성하면 보안 상의 문제가 발생할 수 있으므로, 적절한 설정이 필요하다.
 즉, 웬만하면 Access-Control-Allow-Origin을 * 로 설정하지 말고 필요한 Origin들만 등록해주자
 
-<br>
+</div>
+</details>
 
-## REST와 RESTful
+<details>
+<summary>REST와 RESTful</summary>
+<div markdown="1">
 
 REST(Representational State Transfer)는 웹 상의 자원을 이름(URI)으로 구분하여, 해당 자원의 상태(Representational)를 주고 받는 방식을 말한다. REST는 웹의 기존 동작을 이용하며, HTTP 프로토콜을 따르는 모든 플랫폼에서 사용이 가능하다.
 
@@ -395,9 +444,13 @@ RESTful은 REST를 구현하는 웹 서비스의 아키텍처를 의미한다. R
 
 RESTful 아키텍처를 따르는 웹 서비스는 간단하고 확장성이 좋으며, 서로 다른 클라이언트 플랫폼에서도 사용이 가능하다.
 
-<br>
+</div>
+</details>
 
-## 소켓
+<details>
+<summary>소켓</summary>
+<div markdown="1">
+
 
 소켓은 네트워크 상에서 돌아가는 두 개의 프로그램 간 양방향 통신의 하나의 엔드포인트이다. 소켓은 포트 번호에 바인딩 되어 TCP 레이어에서 네트워크 통신을 진행하는 애플리케이션을 식별할 수 있게 한다. 소켓은 전송 계층과 응용 계층 사이의 인터페이스 즉, 사용자가 커널을 사용할 수 있도록 추상화를 시켜준다.
 
@@ -425,9 +478,14 @@ RESTful 아키텍처를 따르는 웹 서비스는 간단하고 확장성이 좋
 
 > 블로그들을 보면 소켓 통신은 양방향 통신, 커넥션 유지가 가능하다고 한다. 하지만, 이건 웹 소켓에 해당하는 이야기인데 HTTP 자체가 TCP 기반으로 동작하고 결국 소켓을 사용하게 되는데 HTTP도 그럼 양방향 통신이 되는것 아닌가..? 스터디에서 해결하기
 
-<br>
+</div>
+</details>
 
-## HTTP vs Websocket
+
+<details>
+<summary>HTTP vs Websocket</summary>
+<div markdown="1">
+
 
 웹소켓은 ws 프로토콜을 기반으로 클라이언트와 서버 사이에 지속적인 완전 양방향 연결 스트림을 만들어 주는 기술이다.
 
@@ -491,9 +549,12 @@ RESTful 아키텍처를 따르는 웹 서비스는 간단하고 확장성이 좋
 </div>
 </details>
 
-<br>
+</div>
+</details>
 
-## 쿠키와 세션
+<details>
+<summary>쿠키와 세션</summary>
+<div markdown="1">
 
 ### 쿠키
 
@@ -588,9 +649,13 @@ CSRF는 Cross-Site Request Forgery의 약자로 쿠키의 동작 방식을 이�
 
 > 쿠키와 세션은 상반되는 기술이 아니라 서로의 약점을 보완하기 위한 기술로 사용될 수 있다. 예를 들어 탈취당하기 쉽다는 쿠키의 약점을 보완해서 쿠키 내부에 민감 정보 대신 SessionID만 저장해서 전송할 수 있다.
 
-<br>
+</div>
+</details>
 
-## DNS
+<details>
+<summary> DNS</summary>
+<div markdown="1">
+
 
 DNS은 인터넷 상에서 도메인 이름을 IP 주소로 변환해주는 시스템이다.
 
@@ -606,9 +671,12 @@ DNS는 도메인 이름을 IP 주소로 변환하기 위해 DNS 서버를 사용
 
 > DNS 요청을 매번 실제 DNS 서버가 처리한다면 시간이 많이 걸릴 것이다. 따라서 자주 사용한 주소는 캐시를 통해 빠르게 IP를 얻어올 수 있다.
 
-<br>
+</div>
+</details>
 
-## DNS Round Robin
+<details>
+<summary>DNS Round Robin</summary>
+<div markdown="1">
 
 DNS 라운드 로빈(Round Robin)은 DNS(Domain Name System) 서버에서 여러 대의 웹 서버를 등록하고, 요청이 들어올 때마다 순차적으로 웹 서버를 선택하여 요청을 전달하는 방식이다.
 이를 통해, 부하 분산(Load Balancing)을 구현할 수 있다.
@@ -642,9 +710,13 @@ DNS 라운드 로빈은 다수의 웹 서버를 운영하는 대형 웹 사이�
 
 만약 클라이언트와 특정 서버가 세션을 유지하고 있다면 DNS 로드밸런싱을 통해 다른 IP의 서버에 접속할 경우 세션이 끊어질 수 있다. 따라서 세션 클러스터링 같은 적절한 보완책을 사용해야 한다.
 
-<br>
+</div>
+</details>
 
-## Nginx와 Apache 웹 서버 차이
+<details>
+<summary>Nginx와 Apache 웹 서버 차이</summary>
+<div markdown="1">
+
 
 ### Apache HTTP Server
 
@@ -705,9 +777,13 @@ Nginx는 C10K 문제를 해결하기 위해 만들어진 이벤트 기반의 웹
 ### 단점
 - Apache 웹 서버보다 지원하는 모듈이 다양하지 않다.
 
+</div>
+</details>
 
+<details>
+<summary>CDN</summary>
+<div markdown="1">
 
-## CDN
 
 CDN(Content Delivery Network)은 인터넷 사용자가 웹 사이트에 접속할 때, 해당 웹 사이트에 있는 컨텐츠(이미지, 비디오, 문서 등)들을 빠르게 제공하기 위한 분산 네트워크이다.
 
@@ -728,9 +804,13 @@ CDN을 통해 웹 사이트 소유자는 전 세계 어디서나 빠르게 가�
 
 > 유튜브 같이 대형 콘텐츠 제공사들은 세계 곳곳에 있는 CDN 서버를 통해 빠르게 컨텐츠를 제공해준다. 만약 유튜브의 영상을 항상 메인 서버에서 받아와야 했다면 매우 느릴 것이다.
 
-<br>
+</div>
+</details>
 
-## LRU 캐싱
+<details>
+<summary>LRU 캐싱</summary>
+<div markdown="1">
+
 
 LRU (Least Recently Used) 캐싱은 캐시에서 가장 오래 전에 사용된 데이터를 삭제하는 알고리즘이다. 이 알고리즘은 캐시의 크기가 한정되어 있을 때, 캐시에 새로운 데이터가 삽입될 때마다 가장 오래전에 사용된 데이터를 삭제하여 캐시의 용량을 유지하면서 캐시의 효율성을 높일 수 있다.
 
@@ -738,9 +818,15 @@ LRU (Least Recently Used) 캐싱은 캐시에서 가장 오래 전에 사용된 
 
 LRU 캐싱은 **캐시의 크기가 한정되어 있을 때**, 캐시에서 가장 오래전에 사용된 데이터를 삭제함으로써 캐시의 공간을 효율적으로 관리할 수 있다. 그러나, 캐시의 크기가 계속해서 증가하거나, 데이터의 접근 패턴이 예측하기 어렵거나, 최근에 사용된 데이터와 오래된 데이터의 구분이 모호한 경우, LRU 캐싱의 효율성이 감소할 수 있다.
 
-<br>
 
-## daum.net을 쳤을 때 일어나는 과정을 네트워크 관점에서 설명해보아라
+</div>
+</details>
+
+<details>
+<summary>daum.net을 쳤을 때 일어나는 과정을 네트워크 관점에서 설명해보아라</summary>
+<div markdown="1">
+
+
 
 1. 주소창에 URL을 입력한다.
 2. PC 내부의 Hosts file을 찾아본다.
@@ -751,6 +837,8 @@ LRU 캐싱은 **캐시의 크기가 한정되어 있을 때**, 캐시에서 가�
 7. TCP 연결이 성공하면 HTTP Request를 보낸다.
 8. HTTP 응답이 response가 돌아온다.
 
+</div>
+</details>
 
 
 
