@@ -12,8 +12,8 @@
 |Week1| [DB](./db)        |
 |Week2| [스프링](./spring)   |
 |Week3| [자바](./java)      |
-|Week4| 네트워크              |
-|Week5| OS                |
+|Week4| [네트워크](./network) |
+|Week5| [OS](./os)                |
 |Week6| 자료구조              |
 |Week7| 디자인패턴, 개발방법론, etc |
 |Week8| 알고리즘              |
