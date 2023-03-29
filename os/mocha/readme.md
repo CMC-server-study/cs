@@ -58,7 +58,10 @@
 
 운영체제는 프로세스 간의 자원 접근을 위한 매커니즘인 IPC를 제공하고, 기법으로는 파이프, 파일, 소켓, 공유메모리 등이 있다.
 
+<img width="400" alt="ipc" src="https://user-images.githubusercontent.com/82302520/228541481-923ed523-8379-4e3c-b75d-28335694eb76.png">
+
 ### 공유 메모리 방식
+
 
 통신을 원하는 프로세스들이 특정한 메모리 공간을 할당 받고, 그 공간을 통해 데이터를 주고 받는 방식을 말한다.
 
@@ -205,9 +208,12 @@ deadlock이 발생하는 조건은 상호 배제, 점유 대기, 비선점, 순�
 
 ### Page
 
+![스크린샷 2023-03-29 오후 9 55 14](https://user-images.githubusercontent.com/82302520/228542478-ba81822f-b180-4e4e-834c-dcb9a3386fb2.png)
+
 Paging이란 process가 할당받은 메모리 공간을 일정한 page 단위로 나누어, 물리 메모리에서 연속되지 않는 서로 다른 위치에 저장하는 메모리 관리 기법이다.
 
 ### segmentation
+![스크린샷 2023-03-29 오후 9 56 43](https://user-images.githubusercontent.com/82302520/228542502-e096b6e8-18c1-4151-b837-7f9d6c3a5059.png)
 
 - segmentation 기법은 process가 할당받은 메모리 공간을 **논리적 의미 단위(segment)**로 나누어, 연속되지 않는 물리 메모리 공간에 할당될 수 있도록 하는 메모리 관리 기법이다.
 - 일반적으로 process의 메모리 영역 중 Code, Data, Heap, Stack 등의 기능 단위로 segment를 정의하는 경우가 많다.
